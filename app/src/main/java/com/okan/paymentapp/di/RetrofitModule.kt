@@ -2,14 +2,20 @@ package com.okan.paymentapp.di
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
+import com.okan.paymentapp.BuildConfig
 import com.okan.paymentapp.api.PaymentAPI
+import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
+@Module
+@InstallIn(ApplicationComponent::class)
 object RetrofitModule {
 
     @Singleton
@@ -27,6 +33,8 @@ object RetrofitModule {
             addInterceptor(
                 Interceptor { chain ->
                     val builder = chain.request().newBuilder()
+                    builder.header("x-ibm-client-id", BuildConfig.CLIENT_ID)
+                    builder.header("x-ibm-client-secret", BuildConfig.CLIENT_SECRET)
                     return@Interceptor chain.proceed(builder.build())
                 }
             )
