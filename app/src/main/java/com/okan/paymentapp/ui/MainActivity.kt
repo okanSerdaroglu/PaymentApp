@@ -1,7 +1,8 @@
-package com.okan.paymentapp
+package com.okan.paymentapp.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.okan.paymentapp.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
