@@ -54,6 +54,7 @@ object RetrofitModule {
             .create(PaymentAPI::class.java)
     }
 
+    // For unsafe connection this method provides UnsafeOkHttpClient
     /**
     @Singleton
     @Provides

@@ -58,7 +58,7 @@ class MainFragment
         progress_bar.visibility = if (isDisplayed) View.VISIBLE else View.GONE
     }
 
-    private fun sendPaymentEvent(){
+    private fun sendPaymentEvent() {
         button_pay.setOnClickListener {
             viewModel.setStateEvent(
                 mainStateEvent = MainStateEvent.SendPayment
@@ -66,10 +66,9 @@ class MainFragment
         }
     }
 
-    private fun displaySuccess (){
+    private fun displaySuccess() {
         image_view_success.visibility = View.VISIBLE
         text_view_message.text = getString(R.string.success_payment_message)
-
     }
 
 }
