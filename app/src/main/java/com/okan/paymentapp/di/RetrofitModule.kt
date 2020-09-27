@@ -54,4 +54,14 @@ object RetrofitModule {
             .create(PaymentAPI::class.java)
     }
 
+    /**
+    @Singleton
+    @Provides
+    fun provideRetrofit(gson: Gson): Retrofit.Builder {
+    return Retrofit.Builder()
+    .baseUrl("https://sandbox-api.payosy.com/api/")
+    .addConverterFactory(GsonConverterFactory.create(gson))
+    .client(UnsafeOkHttpClient.unsafeOkHttpClient)}
+     */
+
 }
