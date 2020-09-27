@@ -56,7 +56,7 @@ constructor(
         if (message != null) {
             text.text = message
         } else {
-            text.text = "Unknown Error"
+            text.text = getString(R.string.unknown_error)
         }
     }
 

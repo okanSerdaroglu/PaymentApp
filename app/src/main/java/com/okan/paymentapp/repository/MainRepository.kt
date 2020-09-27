@@ -17,7 +17,6 @@ constructor(
 ) {
     suspend fun sendPayment(): Flow<DataState<PaymentResult>> = flow {
         emit(DataState.Loading)
-        delay(1000) // delay is just seeing the progress
         try {
             val paymentResult = paymentAPI.sendPaymentRequest()
             emit(DataState.Success(networkMapper.mapFromEntity(paymentResult)))
