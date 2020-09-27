@@ -4,7 +4,6 @@ import com.okan.paymentapp.api.NetworkMapper
 import com.okan.paymentapp.api.PaymentAPI
 import com.okan.paymentapp.model.PaymentResult
 import com.okan.paymentapp.util.DataState
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

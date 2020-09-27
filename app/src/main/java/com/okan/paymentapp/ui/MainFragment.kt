@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import com.okan.paymentapp.R
 import com.okan.paymentapp.model.PaymentResult
 import com.okan.paymentapp.util.DataState
@@ -18,11 +17,10 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
 class MainFragment
-constructor(
-) : Fragment(R.layout.fragment_main) {
+    : Fragment(R.layout.fragment_main) {
 
     private val viewModel: MainViewModel by viewModels()
-    private val TAG: String = "AppDebug"
+    private val appDebug: String = "AppDebug"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,11 +31,11 @@ constructor(
     }
 
     private fun subscribeObservers() {
-        viewModel.dataState.observe(viewLifecycleOwner, Observer { dataState ->
+        viewModel.dataState.observe(viewLifecycleOwner, { dataState ->
             when (dataState) {
                 is DataState.Success<PaymentResult> -> {
                     displayProgressBar(false)
-                    Log.d(TAG, dataState.data.posID)
+                    Log.d(appDebug, dataState.data.posID)
                 }
 
                 is DataState.Error -> {

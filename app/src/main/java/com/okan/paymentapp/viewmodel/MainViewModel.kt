@@ -1,6 +1,5 @@
 package com.okan.paymentapp.viewmodel
 
-import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.okan.paymentapp.model.PaymentResult
@@ -16,8 +15,7 @@ import kotlinx.coroutines.launch
 class MainViewModel
 @ViewModelInject
 constructor(
-    private val mainRepository: MainRepository,
-    @Assisted private val savedStateHandle: SavedStateHandle
+    private val mainRepository: MainRepository
 ) : ViewModel() {
 
     private val _dataState: MutableLiveData<DataState<PaymentResult>> = MutableLiveData()
