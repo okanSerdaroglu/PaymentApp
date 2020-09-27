@@ -2,10 +2,7 @@ package com.okan.paymentapp.viewmodel
 
 import androidx.hilt.Assisted
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.okan.paymentapp.model.PaymentResult
 import com.okan.paymentapp.repository.MainRepository
 import com.okan.paymentapp.util.DataState
@@ -20,7 +17,7 @@ class MainViewModel
 @ViewModelInject
 constructor(
     private val mainRepository: MainRepository,
-    @Assisted private val savedStateHandle: MainRepository
+    @Assisted private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
     private val _dataState: MutableLiveData<DataState<PaymentResult>> = MutableLiveData()
@@ -37,7 +34,8 @@ constructor(
                             _dataState.value = dataState
                         }.launchIn(viewModelScope)
                 }
-                is None -> {}
+                is None -> {
+                }
             }
         }
     }
