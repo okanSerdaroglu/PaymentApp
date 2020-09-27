@@ -33,6 +33,8 @@ object RetrofitModule {
             addInterceptor(
                 Interceptor { chain ->
                     val builder = chain.request().newBuilder()
+                    builder.header("content-type","application/json")
+                    builder.header("accept","application/json")
                     builder.header("x-ibm-client-id", BuildConfig.CLIENT_ID)
                     builder.header("x-ibm-client-secret", BuildConfig.CLIENT_SECRET)
                     return@Interceptor chain.proceed(builder.build())
