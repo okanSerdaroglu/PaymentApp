@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">PaymentApp</string>
-    <string name="unknown_error">Unknown Error</string>
+    <string name="unknown_error">TEKNİK HATA</string>
+    <string name="success_payment_message">ÖDEME BAŞARILI</string>
+    <string name="button_pay">ÖDE</string>
+    <string name="_1000_try">1000 TRY</string>
 </resources>

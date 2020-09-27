@@ -1,7 +1,6 @@
 package com.okan.paymentapp.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -20,14 +19,11 @@ class MainFragment
     : Fragment(R.layout.fragment_main) {
 
     private val viewModel: MainViewModel by viewModels()
-    private val appDebug: String = "AppDebug"
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         subscribeObservers()
-        viewModel.setStateEvent(
-            mainStateEvent = MainStateEvent.SendPayment
-        )
+        sendPaymentEvent()
     }
 
     private fun subscribeObservers() {
@@ -35,7 +31,7 @@ class MainFragment
             when (dataState) {
                 is DataState.Success<PaymentResult> -> {
                     displayProgressBar(false)
-                    Log.d(appDebug, dataState.data.posID)
+                    displaySuccess()
                 }
 
                 is DataState.Error -> {
@@ -52,14 +48,28 @@ class MainFragment
 
     private fun displayError(message: String?) {
         if (message != null) {
-            text.text = message
+            text_view_message.text = message
         } else {
-            text.text = getString(R.string.unknown_error)
+            text_view_message.text = getString(R.string.unknown_error)
         }
     }
 
     private fun displayProgressBar(isDisplayed: Boolean) {
         progress_bar.visibility = if (isDisplayed) View.VISIBLE else View.GONE
+    }
+
+    private fun sendPaymentEvent(){
+        button_pay.setOnClickListener {
+            viewModel.setStateEvent(
+                mainStateEvent = MainStateEvent.SendPayment
+            )
+        }
+    }
+
+    private fun displaySuccess (){
+        image_view_success.visibility = View.VISIBLE
+        text_view_message.text = getString(R.string.success_payment_message)
+
     }
 
 }
